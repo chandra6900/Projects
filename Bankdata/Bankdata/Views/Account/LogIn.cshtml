@@ -1,4 +1,8 @@
-﻿@{
+﻿@using Bankdata.Models
+
+@model List<Bankdata.Models.BankRecord>
+
+@{
     ViewBag.Title = "LogIn";
 }
 
@@ -13,12 +17,12 @@
         <th >Address</th>
     </tr>
    
-    @foreach(string[] rcd in ViewData["BankData"] as List<string[]>)
+    @foreach(BankRecord rcd in Model)
     {
         <tr>
-            <td>@rcd[0]</td>
-            <td>@rcd[1]</td>
-            <td>@rcd[2]</td>
+            <td>@rcd.BankName</td>
+            <td>@rcd.City</td>
+            <td>@rcd.Address</td>
         </tr>
     }   
 </table>

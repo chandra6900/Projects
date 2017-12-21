@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
 using System.Web.Configuration;
+using Bankdata.Models;
 
 namespace Bankdata.Controllers
 {
@@ -15,10 +16,11 @@ namespace Bankdata.Controllers
         //
         // GET: /Account/
         static string connstrng = ConfigurationManager.ConnectionStrings["bankcon"].ConnectionString;
+
         public ActionResult LogIn()
         {
-            ReadFromDb();
-            return View();
+            List<BankRecord> brlist=ReadFromDb();
+            return View(brlist);
         }
 
        
@@ -62,10 +64,12 @@ namespace Bankdata.Controllers
                 }
             }
         }
-        private void ReadFromDb()
+
+        private List<BankRecord> ReadFromDb()
         {
             using (SqlConnection con = new SqlConnection(connstrng))
             {
+                List<BankRecord> brlist = null;
                 SqlCommand sqlcmd = new SqlCommand("select * from tmphello;", con);
                 con.Open();
                 try
@@ -73,18 +77,16 @@ namespace Bankdata.Controllers
                     SqlDataReader rdr = sqlcmd.ExecuteReader();
                     if (rdr.HasRows)
                     {
-                        List<string[]> a = new List<string[]>();
+                        brlist = new List<BankRecord>();
                         while (rdr.Read())
                         {
-                            string[] rcd = new string[3];
-                            rcd[0] = rdr.GetString(1);
-                            rcd[1] = rdr.GetString(2);
-                            rcd[2] = rdr.GetString(3);
-                            a.Add(rcd);
-                        }
-                        ViewData.Add("BankData", a);
+                            BankRecord br = new BankRecord();
+                            br.BankName = rdr.GetString(1);
+                            br.City = rdr.GetString(2);
+                            br.Address = rdr.GetString(3);
+                            brlist.Add(br);
+                        }                      
                     }
-
                 }
                 catch (Exception ex)
                 {
@@ -94,7 +96,9 @@ namespace Bankdata.Controllers
                 {
                     con.Close();
                 }
+                return brlist;
             }
+
         }
 
     }
