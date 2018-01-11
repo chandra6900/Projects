@@ -33,4 +33,3 @@ C:\Users\ramudu\Documents\Visual Studio 2013\Projects\Bankdata\Bankdata\bin\Syst
 C:\Users\ramudu\Documents\Visual Studio 2013\Projects\Bankdata\Bankdata\bin\System.Web.WebPages.Razor.xml
 C:\Users\ramudu\Documents\Visual Studio 2013\Projects\Bankdata\Bankdata\obj\Debug\Bankdata.dll
 C:\Users\ramudu\Documents\Visual Studio 2013\Projects\Bankdata\Bankdata\obj\Debug\Bankdata.pdb
-C:\Users\ramudu\Documents\Visual Studio 2013\Projects\Bankdata\Bankdata\obj\Debug\Bankdata.csprojResolveAssemblyReference.cache
